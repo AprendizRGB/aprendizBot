@@ -3,7 +3,12 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.MessageContent,
+	GatewayIntentBits.GuildMembers
+] });
 
 client.cooldowns = new Collection();
 client.commands = new Collection();
@@ -53,7 +58,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
 		if (now < expirationTime) {
 			const expiredTimestamp = Math.round(expirationTime / 1000);
-			return interaction.reply({ content: `Please wait, you are on a cooldown for \`${command.data.name}\`. You can use it again <t:${expiredTimestamp}:R>.`, ephemeral: true });
+			return interaction.reply({ content: `Espere, está en tiempo de reutilización para \`${command.data.name}\`. Puedes usarlo nuevamente en <t:${expiredTimestamp}:R>.`, ephemeral: true });
 		}
 	}
 

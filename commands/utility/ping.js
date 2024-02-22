@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {
 	category: 'utility',
@@ -7,8 +8,10 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Responde con: Pong!'),
 	async execute(interaction) {
-		await interaction.reply({ content: `Pong Secreto! en ${client.ws.ping}ms`, ephemeral: true });
-		await wait(2_000);
-		await interaction.editReply({ content: `Pong Secreto en ${client.ws.ping}ms ¡otra vez!`, ephemeral: true });
+		await interaction.reply({ content: `Pong Secreto!`, ephemeral: true });
+		/*await wait(2_000);
+		await interaction.editReply({ content: `Pong Secreto ¡otra vez! ${client.ws.ping()}`, ephemeral: true });*/
 	},
 };
+
+// en ${client.ws.ping}ms 
