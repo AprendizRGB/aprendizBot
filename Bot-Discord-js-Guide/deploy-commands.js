@@ -1,5 +1,5 @@
 const { REST, Routes } = require('discord.js');
-const { clientId, guildId, token } = require('./config.json');
+const { clientId, guildId, token } = require('../config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -43,4 +43,6 @@ const rest = new REST().setToken(token);
        // Y, por supuesto, ¡asegúrate de detectar y registrar cualquier error!
         console.error(error);
     }
-})();
+});
+
+module.exports = { cargarComandos };
